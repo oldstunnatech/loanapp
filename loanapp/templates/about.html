@@ -1,0 +1,110 @@
+{% extends 'common_page.html' %}
+
+{% block title %}About Our Mission{% endblock title %}
+
+
+{% block body_content %}
+<style>
+    /* Retaining your core styles for consistency */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 960px;
+        margin: 60px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+        margin-top: 100px; /* Adjusted for navbar */
+    }
+    h1 {
+        text-align: center;
+        color: #005691; /* Professional primary color */
+        margin-bottom: 10px;
+        font-size: 2.5em;
+        font-weight: 700;
+    }
+    .tagline {
+        text-align: center;
+        color: #6c757d;
+        margin-bottom: 40px;
+        font-size: 1.1em;
+    }
+    .about-section h2 {
+        color: #34495e;
+        border-bottom: 2px solid #007bff;
+        padding-bottom: 5px;
+        margin-top: 30px;
+        margin-bottom: 15px;
+        font-weight: 600;
+    }
+    .about-section p {
+        font-size: 1.05em;
+        color: #444;
+        line-height: 1.7;
+    }
+    .core-value {
+        list-style-type: none;
+        padding-left: 0;
+    }
+    .core-value li {
+        margin-bottom: 10px;
+        font-size: 1.05em;
+        color: #34495e;
+    }
+    .core-value li::before {
+        content: "✔️";
+        margin-right: 10px;
+        color: #007bff;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container">
+    <h1>Our Mission: Smart, Fair Lending</h1>
+    <p class="tagline">Leveraging the power of data science to redefine the loan application process.</p>
+
+    <div class="about-section">
+        <h2>Who We Are</h2>
+        <p>
+            We are a dedicated financial technology platform focused on providing **fast, objective, and responsible loan decisions**. We recognized the flaws in traditional lending—slow processing, manual bias, and outdated risk assessment—and built a modern solution from the ground up. Our platform is built on the robust **Django** framework, ensuring scalability and enterprise-grade security.
+        </p>
+    </div>
+
+    <div class="about-section">
+        <h2>The Core: Our Predictive Model 🤖</h2>
+        <p>
+            The heart of our system is our **proprietary machine learning model**. This advanced algorithm analyzes hundreds of non-prejudicial financial data points in seconds to accurately predict loan repayment probability. This allows us to deliver:
+            <ul class="core-value">
+                <li>Faster decisions, often within minutes.</li>
+                <li>**Fairer access** to capital by removing subjective human judgment.</li>
+                <li>More competitive loan offers based on precise risk assessment.</li>
+            </ul>
+        </p>
+        <p>
+            By using **data science**  instead of traditional screening methods, we provide a transparent and objective pathway for individuals and businesses to secure financing.
+        </p>
+    </div>
+
+    <div class="about-section">
+        <h2>Our Commitment to You</h2>
+        <p>
+            **Trust and security** are paramount. While our technology is complex, our goal is simple: to make borrowing straightforward and reliable. We are committed to:
+            <ul class="core-value">
+                <li>**Security:** Protecting your personal and financial data with 256-bit encryption and strict privacy protocols.</li>
+                <li>**Transparency:** Clearly explaining the factors that influence your loan decision (see our <a href="{% url 'resources' %}" style="color: #007bff; text-decoration: none;">Resources page</a>).</li>
+                <li>**Innovation:** Continuously refining our predictive model to improve accuracy and fairness for all applicants.</li>
+            </ul>
+        </p>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 1.1em; color: #005691; font-weight: 600;">
+        Join us in making lending smarter, faster, and fairer for everyone.
+    </p>
+</div>
+
+{% endblock body_content %}

@@ -1,0 +1,99 @@
+{% extends 'common_page.html' %} 
+{% load crispy_forms_tags %}
+
+{% block content %}
+<div class="container my-5">
+    <div class="row justify-content-center">
+        <div class="col-lg-8 col-md-10">
+
+            <div class="card shadow-lg p-4 p-md-5">
+
+                <!-- MAIN STATUS HEADER -->
+                <div class="text-center mb-4">
+                    {% if application.prediction == 1 %}
+                        <h1 class="display-4 text-success font-weight-bold">
+                            Congratulations. You've been approved!
+                        </h1>
+                        <p class="lead text-success">{{ status_message }}</p>
+                    {% else %}
+                        <h1 class="display-4 text-danger font-weight-bold">
+                            Your loan has been declined.
+                        </h1>
+                        <p class="lead text-muted">{{ status_message }}</p>
+                    {% endif %}
+                </div>
+
+                <hr class="my-4">
+
+                <!-- SUMMARY SECTION -->
+                <div class="row text-center mb-4">
+                    <div class="col-12">
+                        <h3 class="mb-3 text-primary">Prediction Details</h3>
+                    </div>
+                    
+                    {% if application.prediction_probability is not None %}
+                    <div class="col-md-6 mb-3">
+                        <div class="p-3 bg-light rounded shadow-sm">
+                            <h5 class="mb-0 text-muted">Approval Confidence Score</h5>
+                            <p class="h4 text-dark mt-1">{{ application.prediction_probability|floatformat:2 }}</p>
+                            <small class="text-secondary">(Higher is better)</small>
+                        </div>
+                    </div>
+                    {% endif %}
+
+                    <div class="col-md-{% if application.prediction_probability is not None %}6{% else %}12{% endif %} mb-3">
+                        <div class="p-3 bg-light rounded shadow-sm">
+                            <h5 class="mb-0 text-muted">Requested Amount</h5>
+                            <p class="h4 text-dark mt-1">${{ application.loan_amnt|floatformat:2 }}</p>
+                        </div>
+                    </div>
+                </div>
+
+                <hr class="my-4">
+
+                <!-- APPLICATION INPUT DETAILS -->
+                <h3 class="mb-3 text-secondary text-center">Your Application Inputs</h3>
+                <div class="row">
+                    <!-- Column 1 -->
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Age:</strong> {{ application.person_age }}</li>
+                            <li><strong>Gender:</strong> {{ application.person_gender }}</li>
+                            <li><strong>Education:</strong> {{ application.person_education }}</li>
+                            <li><strong>Annual Income:</strong> ${{ application.person_income|floatformat:2 }}</li>
+                            <li><strong>Employment Experience:</strong> {{ application.person_emp_exp }} years</li>
+                        </ul>
+                    </div>
+                    <!-- Column 2 -->
+                    <div class="col-md-6">
+                        <ul class="list-unstyled">
+                            <li><strong>Home Ownership:</strong> {{ application.person_home_ownership }}</li>
+                            <li><strong>Loan Intent:</strong> {{ application.loan_intent }}</li>
+                            <li><strong>Interest Rate:</strong> {{ application.loan_int_rate|floatformat:2 }}%</li>
+                            <li><strong>Credit Score:</strong> {{ application.credit_score }}</li>
+                            <li><strong>Previous Defaults:</strong> {{ application.previous_loan_defaults_on_file }}</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <hr class="mt-4 mb-3">
+
+                <!-- ACTION BUTTONS -->
+                <div class="text-center mt-4">
+                    <!-- Redirects back to the loan application form -->
+                    <a href="{% url 'loan_predict' user_id=application.user.id %}" class="btn btn-lg btn-info shadow-sm me-2">
+                        Start a New Application
+                    </a>
+                    
+                    <!-- Placeholder for viewing history -->
+                    <button class="btn btn-lg btn-outline-secondary shadow-sm" disabled>
+                        View Application History (Coming Soon)
+                    </button>
+                    
+                    <p class="mt-3 text-sm text-muted">Application ID: {{ application.id }} | User ID: {{ application.user.id }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}

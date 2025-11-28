@@ -1,0 +1,361 @@
+{% extends 'common_page.html' %} 
+{% load crispy_forms_tags %} 
+
+{% block title %}Secure Login - Financial Services{% endblock title %} 
+
+{% block body_content %}
+
+<style>
+    /* 1. Overall Layout & Background for Professionalism */
+    .loan-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 80px); 
+        padding: 1rem;
+        /* Subtle, light blue background for trust */
+        background-color: #f0f3f8; 
+    }
+    
+    /* 2. Secure Login Card */
+    .loan-card {
+        background: white;
+        padding: 3rem 2.5rem; /* More vertical padding */
+        border-radius: 6px; /* Less rounded for a serious look */
+        /* Strong, defined shadow for security */
+        box-shadow: 0 4px 20px rgba(0, 50, 100, 0.1); 
+        width: 100%;
+        max-width: 400px; 
+        border-top: 5px solid #005691; /* Signature Financial Color Strip */
+    }
+
+    /* 3. Heading and Logo Area */
+    .loan-card h1 {
+        font-size: 1.75rem; 
+        text-align: center;
+        margin-bottom: 0.5rem;
+        color: #005691; /* Deep Professional Blue */
+        font-weight: 700;
+    }
+
+    .loan-card p.subtitle {
+        text-align: center;
+        color: #555;
+        margin-bottom: 2rem;
+        font-size: 1rem;
+    }
+
+    /* 4. Button Styling (Classic Blue/Navy) */
+    .loan-btn {
+        display: block;
+        width: 100%;
+        background-color: #0073e6; /* Bright Action Blue */
+        color: white;
+        border: 1px solid #005691;
+        padding: 0.75rem;
+        font-size: 1.0rem;
+        border-radius: 4px; /* Slightly sharp corners */
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+    
+    .loan-btn:hover {
+        background-color: #005691; /* Darker Navy on hover */
+    }
+
+    /* 5. Crispy Form Styling (Ensuring a clean field look) */
+    .form-group label {
+        font-weight: 500;
+        color: #333;
+    }
+
+    /* 6. Link Styling */
+    .forgot-password {
+        display: block; 
+        text-align: right; /* Often placed on the right in traditional forms */
+        margin-top: 1rem;
+        font-size: 0.9rem;
+        text-decoration: none;
+        color: #0073e6;
+    }
+    
+    .forgot-password:hover {
+        text-decoration: underline;
+        color: #005691;
+    }
+
+    /* Message for Security */
+    .security-message {
+        text-align: center;
+        font-size: 0.85rem;
+        color: #777;
+        margin-top: 2rem;
+        border-top: 1px dashed #ccc;
+        padding-top: 1rem;
+    }
+</style>
+
+<div class="container loan-container">
+    <div class="loan-card">
+        <h1>Financial Access</h1>
+        <p class="subtitle">Securely Sign In to Your Account</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <a class="forgot-password" href="{% url 'password_reset' %}">Forgot User ID or Password?</a>
+            <button type="submit" class="loan-btn mt-4">Sign In</button>
+        </form>
+        
+        <div class="security-message">
+            Your connection is encrypted and secured by 256-bit SSL.
+        </div>
+    </div>
+</div>
+
+{% endblock body_content %}
+
+
+{% comment %} {% extends 'common_page.html' %} 
+{% load crispy_forms_tags %} 
+
+{% block title %}Login{% endblock title %} 
+
+{% block body_content %}
+
+<style>
+    /* 1. Overall Layout & Centering */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        /* Calculate min-height to fill the viewport space not taken by the navbar */
+        min-height: calc(100vh - 80px); 
+        padding: 1rem; /* Add padding for small screens */
+    }
+    
+    /* 2. Card Styling */
+    .login-card {
+        background: white;
+        padding: 2.5rem; /* Increased padding for a cleaner look */
+        border-radius: 12px;
+        box-shadow: 0 6px 30px rgba(0, 0, 0, 0.15); /* Slightly stronger shadow */
+        width: 100%;
+        max-width: 420px; /* Slightly wider card */
+        transition: transform 0.3s ease;
+    }
+    
+    .login-card:hover {
+        transform: translateY(-3px); /* Subtle lift on hover */
+    }
+
+    /* 3. Heading */
+    .login-card h1 {
+        font-size: 2rem; /* Clearer heading */
+        text-align: center;
+        margin-bottom: 2rem;
+        color: #333;
+        font-weight: 600;
+        letter-spacing: 0.5px;
+    }
+
+    /* 4. Button Styling (Slight refinement to gradient) */
+    .login-btn {
+        display: block;
+        width: 100%;
+        /* Use a modern, energetic gradient */
+        background: linear-gradient(to right, #6a11cb, #2575fc); 
+        color: white;
+        border: none;
+        padding: 0.85rem;
+        font-size: 1.05rem;
+        border-radius: 8px;
+        cursor: pointer;
+        transition: background 0.3s ease, transform 0.1s ease;
+        box-shadow: 0 4px 15px rgba(45, 102, 219, 0.4);
+    }
+    
+    .login-btn:hover {
+        /* Reverse gradient or change color slightly */
+        background: linear-gradient(to right, #2575fc, #6a11cb);
+        transform: translateY(-1px);
+    }
+    
+    .login-btn:active {
+        transform: translateY(1px);
+    }
+
+    /* 5. Link Styling */
+    .forgot-password {
+        display: block; /* Make it a block element for better spacing */
+        text-align: center;
+        margin-top: 1.5rem;
+        font-size: 0.95rem;
+        text-decoration: none;
+        color: #007bff;
+    }
+    
+    .forgot-password:hover {
+        text-decoration: underline;
+        color: #0056b3;
+    }
+
+    /* 6. Form Field Spacing (Crispy forms often need adjustments) */
+    .form-group {
+        margin-bottom: 1.5rem; 
+    }
+</style>
+
+<div class="container login-container">
+    <div class="login-card">
+        <h1>Welcome Back!</h1>
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+            <button type="submit" class="login-btn mt-4">Log In Securely</button>
+        </form>
+        <a class="forgot-password" href="{% url 'password_reset' %}">Forgot your password?</a>
+    </div>
+</div>
+
+{% endblock body_content %} {% endcomment %}
+
+
+
+{% comment %} {% extends 'common_page.html' %}
+{% load crispy_forms_tags %}
+
+{% block title %}Login{% endblock title %}
+
+{% block body_content %}
+<style>
+    /* Page background */
+    body {
+        background: #f5f6fa;
+    }
+
+    /* Center the form vertically */
+    .login-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: calc(100vh - 80px); /* removes navbar height */
+        padding: 20px;
+    }
+
+    /* Card styling */
+    .login-card {
+        background: #ffffff;
+        padding: 2rem;
+        border-radius: 14px;
+        box-shadow: 0 6px 25px rgba(0, 0, 0, 0.12);
+        width: 100%;
+        max-width: 420px;
+        animation: fadeIn 0.4s ease-in-out;
+    }
+
+    /* Smooth fade animation */
+    @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(20px); }
+        to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* Title */
+    .login-card h1 {
+        font-size: 1.8rem;
+        text-align: center;
+        font-weight: 700;
+        margin-bottom: 1.8rem;
+        color: #222;
+    }
+
+    /* Gradient login button */
+    .login-btn {
+        width: 100%;
+        background: linear-gradient(135deg, #ff416c, #ff4b2b);
+        color: white;
+        border: none;
+        padding: 0.8rem;
+        font-size: 1.1rem;
+        border-radius: 10px;
+        cursor: pointer;
+        transition: 0.3s ease;
+        font-weight: 600;
+        margin-top: 10px;
+    }
+
+    .login-btn:hover {
+        opacity: 0.9;
+    }
+
+    /* Forgot password */
+    .forgot-password {
+        display: inline-block;
+        margin-top: 1.2rem;
+        font-size: 0.9rem;
+        color: #007bff;
+        text-decoration: none;
+        text-align: center;
+        width: 100%;
+    }
+
+    .forgot-password:hover {
+        text-decoration: underline;
+    }
+</style>
+
+<div class="container login-container">
+    <div class="login-card">
+        <h1>Login</h1>
+
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
+
+            <button type="submit" class="login-btn">Login</button>
+        </form>
+
+        <a class="forgot-password" href="{% url 'password_reset' %}">Forgot password?</a>
+    </div>
+</div>
+{% endblock body_content %} {% endcomment %}
+
+
+
+{% comment %} {% extends 'common_page.html' %}
+
+{% block title %}Login{% endblock title %}
+
+{% load crispy_forms_tags %}
+{% block body_content %}
+
+
+</head>
+<body>
+<div class="container">
+    <div class="row mt-5">
+        <div class="way col-md-6 col-lg-6 col-lg-6 col-sm-12 col-xm-12">
+            <h1><span>Sign in here</span></h1>
+            <form method="POST">
+                {% csrf_token %}
+                {{ form|crispy }}
+            
+                <input class="bc-white mt-2 ml-2 longibutton" type="submit" value="Login">
+                
+                <a class="date text-primary mt-5 m1-1 me-3"href="{% url 'password_reset' %}">Forgot password</a>
+
+                
+            </form>
+            
+
+        </div>
+
+    </div>
+</div>
+</div>
+</body>
+</html>
+{% endblock body_content %}
+     {% endcomment %}

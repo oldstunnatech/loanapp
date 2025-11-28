@@ -1,0 +1,56 @@
+{% extends 'common_page.html' %}
+
+{% block title %}Loan Predict{% endblock title %}
+
+
+
+{% block body_content %}
+
+
+<body>
+<div class="container">
+    <h2 class="mb-4 text-center">Apply Now</h2>
+
+<form method="post" novalidate>
+    {% csrf_token %}
+
+    {% for field in form %}
+        <div class="mb-3">
+            <label for="{{ field.id_for_label }}" class="form-label">{{ field.label }}</label>
+            {{ field }}
+            {% if field.errors %}
+                <div class="text-danger mt-1">
+                    {% for error in field.errors %}
+                        <small>{{ error }}</small>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+    {% endfor %}
+
+    <button type="submit" class="btn btn-primary w-100">Predict Loan Approval</button>
+</form>
+
+{% if prediction %}
+    <div class="result mt-4">
+        <h5>Prediction Result:</h5>
+        <p><strong>Approval Status:</strong> {{ prediction }}</p>
+        {% if probability %}
+            <p><strong>Confidence Probability:</strong> {{ probability|floatformat:2 }}</p>
+        {% endif %}
+    </div>
+{% endif %}
+
+
+</div>
+</body>
+</html>
+
+
+
+
+
+
+
+{% endblock body_content %}
+    

@@ -1,0 +1,245 @@
+{% extends 'common_page.html' %}
+
+{% block title %}Loan Model Resources{% endblock title %}
+
+{% block body_content %}
+
+<style>
+    /* Base styles copied from your news page for consistency */
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+    .resources-container {
+        max-width: 1000px;
+        margin: 60px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 6px 20px rgba(0,0,0,0.15); /* Slightly stronger shadow */
+        margin-top: 100px; /* Reduced top margin to fit better after a navbar */
+    }
+    h1 {
+        text-align: center;
+        color: #005691; /* Professional blue */
+        margin-bottom: 10px;
+        font-size: 2.5em;
+    }
+    .subtitle {
+        text-align: center;
+        color: #6c757d;
+        margin-bottom: 40px;
+        font-size: 1.1em;
+    }
+    .resource-section {
+        margin-bottom: 50px;
+        padding: 20px 0;
+        border-bottom: 1px solid #e9ecef;
+    }
+    .resource-section:last-child {
+        border-bottom: none;
+        margin-bottom: 20px;
+    }
+    .resource-section h2 {
+        color: #2c3e50;
+        border-left: 5px solid #007bff; /* Primary accent color */
+        padding-left: 15px;
+        margin-bottom: 25px;
+        font-weight: 600;
+    }
+    .resource-item {
+        margin-bottom: 20px;
+        background: #fdfdfd;
+        padding: 15px;
+        border-radius: 8px;
+        border: 1px solid #eee;
+    }
+    .resource-item h3 {
+        color: #34495e;
+        margin-top: 0;
+        font-size: 1.25em;
+        cursor: pointer;
+        transition: color 0.2s;
+    }
+    .resource-item h3:hover {
+        color: #007bff;
+    }
+    .resource-item p {
+        font-size: 1em;
+        color: #444;
+        line-height: 1.6;
+    }
+    .resource-link {
+        color: #007bff;
+        text-decoration: none;
+        font-weight: 500;
+        transition: color 0.2s;
+    }
+    .resource-link:hover {
+        color: #0056b3;
+        text-decoration: underline;
+    }
+</style>
+
+<div class="resources-container">
+    <h1>Predictive Model Resources</h1>
+    <p class="subtitle">Understand the engine behind our decisions and improve your financial readiness.</p>
+
+    <div class="resource-section">
+        <h2>Financial Literacy & Loan Preparation 💰</h2>
+        
+        <div class="resource-item">
+            <h3>What is a Good Credit Score?</h3>
+            <p>
+                Learn how credit scores are calculated, the typical ranges (Poor, Fair, Good, Excellent), and actionable steps to improve yours before applying for a loan. Our predictive model heavily weighs historical repayment behavior.
+            </p>
+            <a href="#" class="resource-link">Read our Credit Guide →</a>
+        </div>
+        
+        <div class="resource-item">
+            <h3>Managing Debt-to-Income (DTI) Ratio</h3>
+            <p>
+                The DTI ratio is a critical factor in our assessment. Discover how to calculate your DTI and strategies for reducing your monthly debt payments to qualify for better loan terms.
+            </p>
+        </div>
+    </div>
+
+    <div class="resource-section">
+        <h2>Our Predictive Model: Transparency & Fairness 🤖</h2>
+        
+        <div class="resource-item">
+            <h3>How the Prediction Algorithm Works</h3>
+            <p>
+                Our model utilizes **machine learning** to analyze hundreds of data points, including financial history and income stability, to forecast the probability of loan repayment. This provides faster, fairer decisions than traditional manual processes. 
+            </p>
+        </div>
+        
+        <div class="resource-item">
+            <h3>Commitment to Non-Discrimination</h3>
+            <p>
+                We are dedicated to fairness. Our model is rigorously audited to ensure it **does not consider protected characteristics** like race, gender, or religion, adhering strictly to fair lending laws. Decisions are based purely on financial indicators.
+            </p>
+        </div>
+        
+        <div class="resource-item">
+            <h3>Understanding Your Loan Decision</h3>
+            <p>
+                If your loan application is denied, we provide a clear, detailed explanation of the **key factors** (e.g., high DTI, recent missed payments) that contributed to the model's decision, allowing you to improve your profile for a future application.
+            </p>
+        </div>
+    </div>
+
+    <div class="resource-section">
+        <h2>Help Center & Support 📞</h2>
+        
+        <div class="resource-item">
+            <h3>Frequently Asked Questions (FAQ)</h3>
+            <p>
+                Find quick answers regarding application status, required documentation, interest rates, and loan servicing.
+            </p>
+            <a href="{% url 'contact' %}" class="resource-link">Go to FAQ →</a>
+        </div>
+        
+        <div class="resource-item">
+            <h3>Need Personalized Help?</h3>
+            <p>
+                If you have questions about a specific application or need technical support, our team is ready to assist you.
+            </p>
+            <a href="{% url 'contact' %}" class="resource-link">Contact Support →</a>
+        </div>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px; font-size: 0.95em; color: #555;">
+        *All predictive modeling is conducted in compliance with relevant consumer protection and fair lending regulations.
+    </p>
+</div>
+
+{% endblock body_content %}
+
+
+{% comment %} {% extends 'common_page.html' %}
+
+{% block title %}news{% endblock title %}
+
+{% block body_content %}
+
+<style>
+    body {
+        font-family: 'Segoe UI', sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+    .container {
+        max-width: 960px;
+        margin: 60px auto;
+        background: #fff;
+        padding: 40px;
+        border-radius: 12px;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+        margin-top: 150px;
+    }
+    h1 {
+        text-align: center;
+        color: #2c3e50;
+        margin-bottom: 30px;
+    }
+    .news-item {
+        margin-bottom: 35px;
+    }
+    .news-item h2 {
+        margin-bottom: 10px;
+        color: #34495e;
+    }
+    .news-item p {
+        font-size: 1.05em;
+        color: #444;
+        line-height: 1.6;
+    }
+    .news-date {
+        font-size: 0.9em;
+        color: #888;
+        margin-bottom: 5px;
+    }
+</style>
+</head>
+<body>
+<div class="container">
+    <h1>Latest News & Updates</h1>
+
+    <div class="news-item">
+        <div class="news-date">April 30, 2025</div>
+        <h2>New Feature: Instant Fund Transfers</h2>
+        <p>
+            We are excited to announce the rollout of instant fund transfers across all verified accounts. This feature enables users to send money in real-time, enhancing the speed and convenience of online banking.
+        </p>
+    </div>
+
+    <div class="news-item">
+        <div class="news-date">March 22, 2025</div>
+        <h2>Security Upgrade Implemented</h2>
+        <p>
+            Our system now uses enhanced two-factor authentication (2FA) to ensure maximum account security. Users are encouraged to activate 2FA for an added layer of protection.
+        </p>
+    </div>
+
+    <div class="news-item">
+        <div class="news-date">February 10, 2025</div>
+        <h2>Mobile Banking Interface Launched</h2>
+        <p>
+            A responsive mobile version of the platform is now available, allowing users to access all core banking features on-the-go from smartphones and tablets.
+        </p>
+    </div>
+
+    <p style="text-align: center; margin-top: 40px;">
+        <strong>Stay informed. Stay secure. Stay ahead with Digital Banking.</strong>
+    </p>
+</div>
+</body>
+</html>
+
+{% endblock body_content %}
+    
+     {% endcomment %}

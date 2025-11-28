@@ -1,0 +1,320 @@
+{% extends 'common_page.html' %}
+{% load static %}
+{% block title %}home{% endblock title %}
+
+
+{% block banner %}
+
+<style>
+.buttontext p{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 18px;
+
+}
+
+
+@media (max-width: 480px){
+    .buttontext p{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 12px;
+
+}
+
+.nafbar ul li a{
+    font-size: 12px;
+}
+}
+</style>
+
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Loan App</title>
+        <link rel="stylesheet" href="{% static 'style.css' %}">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+        <!-- <script src="https://cdn.tailwindcss.com"></script> -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <link href="https://fonts.cdnfonts.com/css/gloock-2" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">   
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik+80s+Fade&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Alfa+Slab+One&family=Fira+Sans:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Mulish:ital,wght@0,200..1000;1,200..1000&family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Rubik+80s+Fade&family=Tinos:ital,wght@0,400;0,700;1,400;1,700&family=Zalando+Sans+SemiExpanded:ital,wght@0,200..900;1,200..900&display=swap" rel="stylesheet">
+        
+        
+    </head>
+    
+    <body>
+        <main>
+            <div>
+                <nav class="nafbar">
+                    <ul>
+                        <li><a href="{% url 'home' %}">HOME</a></li>
+                        <li><a href="{% url 'about' %}">ABOUT</a></li>
+                        <li><a href="{% url 'resources' %}">RECOURCES</a></li>
+                        <li><a href="{% url 'contact' %}">CONTACT</a></li>
+
+                        {% if request.user.is_authenticated %}
+                        
+                        <li>
+                            <form action="/accounts/logout/" method="post" style="display:inline;">
+                                {% csrf_token %}
+                                <button class="buttontext" type="submit" style="background:none;border:none;color:inherit;font:inherit;padding:0;cursor:pointer;text-decoration:inherit;"><p>LOGOUT</p></button>
+                            </form>
+                        </li>
+
+    
+                        {% else %}
+
+                        <li><a href="{% url 'login' %}">LOGIN</a></li>
+                        <li><a href="{% url 'signup' %}">SIGNUP</a></li>
+                        
+                        
+                        {% endif %}
+                    </ul>
+                </nav>
+                
+                
+            </div>
+            {% endblock banner %}
+
+            
+            {% block body_content %}
+                
+            
+            
+            <div  class="Eurosection">
+                <div class="intro">
+                    <h1>ALL YOU NEED TO GET APPROVED</h1>
+                    
+                </div>
+                
+                <div class="box1">
+                    <div class="score1">
+                        <p>A Good Credit Score</p>
+                    </div>
+                </div>
+                
+                <div class="box2">
+                    <div class="score2">
+                        <p>Your last 3 Months Bank Statement</p>
+                    </div>
+                </div>
+                
+                <div class="box3">
+                    <div class="score3">
+                        <p>Utility Bills</p>
+                    </div>
+                </div>
+                
+                <div class="box4">
+                    <div class="score4">
+                        <p>Prove of Identity</p>
+                    </div>
+                </div>
+
+                {% if user.is_authenticated %}
+                <div class="applynow">
+                    <button><a href="{% url 'loan_predict' user_id=user.id %}">Apply Now!</a></button>
+                </div>
+                {% else %}
+
+                <div class="applynow">
+                    <button><a href="{% url 'login' %}">Apply Now!</a></button>
+                </div>
+                {% endif %}
+
+                <div class="trans">
+                    <img src="{% static '/images/Rectangle-193-400x0-c-default.png.webp' %}" alt="">
+                    
+                </div>
+            </div>
+            
+            
+            
+            <div class="formsection">
+                <div class="title">
+                    <h2>The Loan Product We Offer</h2>
+                    <div class="model">
+                        <p>Using Predictive model, we understand that everyone’s financial needs are unique. That’s why we provide a range of flexible loan products designed to help you reach your personal and business goals with ease and confidence. Whether you’re looking to finance a dream, grow your business, or manage expenses, we have the right solution.</p>
+                    </div>
+                    
+                    <div class="term">
+                        <h2>Term Loan</h2>
+                        {% if user.is_authenticated %}
+                        <button><a href="{% url 'loan_predict' user_id=user.id %}">Get Approved</a></button>
+
+                        {% else %}
+                        <button><a href="{% url 'login' %}">Get Approved</a></button>
+
+                        {% endif %}
+                    </div>
+                    
+                    
+                </div>
+                
+                
+            </div>
+            
+            <div class="middle">
+                <div class="container">
+                    <div class="ploan">
+                        <h3>Personal Loans</h3>
+                        
+                        <p>Our personal loans are designed to give you the financial support you need when it matters most. Whether you’re planning a wedding, consolidating debt, or covering unexpected expenses, we offer:     
+                        </p>
+                        <ul>
+                            <li>Competitive interest rates</li>
+                            <li>Fast approval and flexible repayment terms</li>
+                            <li>Minimal documentation and no hidden fees</li>
+                        </ul>
+                    </div>
+                    
+                    <div class="bloan">
+                        <h3>Business Loans</h3>
+                        
+                        <p>Empower your business with the right financial boost. Our business loans help entrepreneurs and companies of all sizes expand operations, purchase equipment, or manage working capital. We provide:</p>
+                        
+                        <ul>
+                            <li>Tailored loan amounts to suit your business size
+                            </li>
+                            <li>Quick disbursement and easy repayment options
+                            </li>
+                            <li>Dedicated relationship managers for personalized support
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    <div class="mloan">
+                        <h3>Mortgage Loans</h3>
+                        <p>Turn your dream of owning a home into reality. Our mortgage loans offer affordable financing options for purchasing, building, or renovating your property. Enjoy:</p>
+                        <ul>
+                            <li>Attractive interest rates</li>
+                            <li>Long-term repayment flexibility</li>
+                            <li>Expert advice through every step of the home-buying process
+                            </li>
+                        </ul>
+                    </div>
+                    
+                    
+                </div>
+                
+                <div class="flex2">
+                    <div class="aloan">
+                        <h3>Auto Loans</h3>
+                        <p>Get behind the wheel faster with our auto loans. Whether you're buying a new or used car, our financing solutions make ownership simple and affordable:</p>
+                        <ul>
+                            <li>Up to 30% financing on vehicle value</li>
+                            <li>Flexible repayment up to 4 years</li>
+                            <li>Quick approval and convenient documentation</li>
+                        </ul>
+                    </div>
+                    
+                    
+                    <div class="eloan">
+                        <h3>Education Loans</h3>
+                        <p>Invest in your or your child's future with our education loans. We help you focus on learning while we handle the financial part:</p>
+                        <ul>
+                            <li>Coverage for tuition, accommodation, and travel</li>
+                            <li>Grace periods and flexible repayment options</li>
+                            <li>Low-interest rates for qualified applicants</li>
+                        </ul>
+                        
+                    </div>
+                    
+                </div>
+                
+                
+                
+                
+            </div>
+            
+            <div class="footer">
+                <div class="apply">
+                    <h3>Apply Now and Get</h3>
+                    <h4>Approved in Minutes</h4>
+
+                    {% if user.is_authenticated %}
+                    <button><a href="{% url 'loan_predict' user_id=user.id %}">Get Approved Now</a></button>
+                    {% else %}
+                    <button><a href="{% url 'login' %}">Get Approved Now</a></button>
+                    {%  endif %}
+                </div>
+                
+            </div>
+            
+            {% endblock body_content %}
+            {% comment %} <div class="footer2">
+                <div class="wrap">
+                    <div class="empower">
+                        <h3>Predictive Loan</h3>
+                    </div>
+                    
+                    <div class="since">
+                        <p>Ⓒ 2025 Predictive Loan. All Rights Reserved.</p>
+                    </div>
+                    
+                    
+
+                <div class="approval">
+                    <h3>Loan approval is subject to credit assessment and eligibility criteria.</h3>
+                </div>
+
+                <!-- <div class="join">
+                    <h3>Join our community and stay informed about new loan offers and financial tips.</h3>
+                </div> -->
+                <div class="product"> 
+                    <ul>
+                        <li><a href="#">Our Product</a></li>
+                        <li><a href="#">Policy</a></li>
+                        <li><a href="#">About Us</a></li>
+                        <li><a href="#">FAQs</a></li>
+                        <li><a href="#">Contact Us</a></li>
+                        <li><a href="#">Apply Now</a></li>
+                    </ul>
+                </div>
+
+                <div class="end">
+
+                    <div class="proud">
+                        <h3>Proudly serving customers nationwide since 2025.</h3>
+                    </div>
+
+                    <div class="transparent1">
+                        <p>Tel: +2348102242467</p>
+                    </div>
+
+                    <div class="transparent2">
+                        <p>Email: support@predictiveloan.com</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+    
+</body>
+</html> {% endcomment %}
