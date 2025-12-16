@@ -10,7 +10,7 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 
 
-model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "random_forest_model.pkl")
+model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
 
 with open(model_path, "rb") as f:
     loan_model = joblib.load(f)
