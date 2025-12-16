@@ -2,17 +2,18 @@ from django.shortcuts import render, redirect, get_object_or_404
 import numpy as np
 import os
 import pickle
+import joblib
 from django.conf import settings
 from .forms import LoanPredictionForm
 from .models import LoanApplication  # Import your model
 from django.contrib.auth.models import User
+from django.contrib.auth.decorators import login_required
 
 
-
-model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
+model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "random_forest_model.pkl")
 
 with open(model_path, "rb") as f:
-    loan_model = pickle.load(f)
+    loan_model = joblib.load(f)
 
 
 # Load encoders
@@ -58,6 +59,9 @@ def encode(enc, val):
 def encode_label(enc, val):
     return enc.transform([val])[0]  # simple 1D for LabelEncoder
 
+
+
+@login_required
 def loan_predict_view(request, user_id):
     user = User.objects.get(id=user_id)  # fetch the user
     prediction = None
@@ -148,30 +152,62 @@ def loan_predict_view(request, user_id):
 
 
 
-
-
+@login_required
 def loan_result_view(request, user_id): 
     
-    # Fetch the LATEST loan application for the given user
+    # 1. SECURITY CHECK: Ensure the requested user_id matches the logged-in user
+    # If they don't match, this is a security issue.
+    if request.user.id != user_id:
+        # Redirect to their own results or deny access
+        return redirect('loan_result', user_id=request.user.id) 
+
+    # 2. Fetch the LATEST loan application for the CURRENTLY AUTHENTICATED user
     try:
-        application = LoanApplication.objects.filter(user_id=user_id).latest('id')
+        application = LoanApplication.objects.filter(user=request.user).latest('id')
     except LoanApplication.DoesNotExist:
-        # Handle case where no application exists (shouldn't happen immediately after submit)
+        # Redirect the user to the application form if no application is found
         return redirect('loan_predict', user_id=user_id)
 
-    # You can customize the status message here
+    # 3. Customize the status message
     if application.prediction == 1:
-        status_message = "Congratulations! Your loan application is successfully Approved."
+        status_message = "Congratulations! Your loan application is successfully **Approved**."
     else:
-        status_message = "We regret to inform you that your loan application has been Denied."
+        # Improved message for the declined case
+        status_message = (
+            "We regret to inform you that your loan application has been **Denied**. "
+            "We will send an email shortly detailing the factors contributing to this decision."
+        )
         
     context = {
         'application': application,
         'status_message': status_message,
-        'prediction': application.prediction,
-        'probability': application.prediction_probability,
     }
     
+    # Assuming 'transactionapp/loan_result.html' is the correct path
     return render(request, "transactionapp/loan_result.html", context)
+
+# def loan_result_view(request, user_id): 
+    
+#     # Fetch the LATEST loan application for the given user
+#     try:
+#         application = LoanApplication.objects.filter(user_id=user_id).latest('id')
+#     except LoanApplication.DoesNotExist:
+#         # Handle case where no application exists (shouldn't happen immediately after submit)
+#         return redirect('loan_predict', user_id=user_id)
+
+#     # You can customize the status message here
+#     if application.prediction == 1:
+#         status_message = "Congratulations! Your loan application is successfully Approved."
+#     else:
+#         status_message = "We regret to inform you that your loan application has been Denied. We will inform you in emaili the reason of your declined."
+        
+#     context = {
+#         'application': application,
+#         'status_message': status_message,
+#         'prediction': application.prediction,
+#         'probability': application.prediction_probability,
+#     }
+    
+#     return render(request, "transactionapp/loan_result.html", context)
 
 

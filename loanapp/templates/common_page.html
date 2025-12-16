@@ -1,8 +1,7 @@
 {% block banner %}
 {% load static %}
 
-<style>
-.buttontext p{
+<style>.buttontext p{
     color: white;
     font-family: "Fira Sans", sans-serif;
     font-weight: 600;
@@ -11,6 +10,26 @@
 
 }
 
+.dropdown{
+    margin-left: 1080px;
+    margin-top: -90px;
+}
+
+.dropdown ul li a{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 18px;   
+}
+
+.dropdown button{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 18px;   
+}
 
 @media (max-width: 480px){
     .buttontext p{
@@ -22,10 +41,45 @@
 
 }
 
+.nafbar {
+    margin-left: -80px;
+    
+
+}
+
 .nafbar ul li a{
     font-size: 12px;
 }
+
+.dropdown{
+    margin-left: 305px;
+    margin-top: -85px;
 }
+
+.dropdown ul li a{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 8px;   
+}
+
+.dropdown button{
+    color: white;
+    font-family: "Fira Sans", sans-serif;
+    font-weight: 600;
+    font-style: italic;
+    font-size: 8px; 
+   
+}
+.intro {
+    margin-top: 58px;
+}
+
+
+
+
+
 </style>
 
 <!DOCTYPE html>
@@ -93,10 +147,31 @@
 
                         
                     {% endif %}
-                    
+                
                     
                 </ul>
+
             </nav>
+
+            {% if request.user.is_authenticated %}
+            <div class="dropdown">
+                        <button class="btn btn-secondary dropdown-toggle" type="button" data-bs-toggle="dropdown" aria-expanded="false">{{request.user.username}}</button>
+                        <ul class="dropdown-menu dropdown-menu-dark">
+
+                            <li><a class="dropdown-item active" href="{% url 'profile' request.user.id %}">My Profile</a></li>
+
+                            {% if request.user.is_superuser %}
+                            <li><a class="dropdown-item" href="{% url 'all_user' 'staff' %}">Staff</a></li>
+                            <li><a class="dropdown-item" href="{% url 'all_user' 'customer' %}">Customers</a></li>
+                            {% elif request.user.is_staff %}
+                            <li><a class="dropdown-item" href="{% url 'all_user' 'customer' %}">Customers</a></li>
+                            {% endif %}
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item" href="{% url 'password_change' %}">Change Password</a></li>
+                            
+                        </ul>
+                    </div>
+            {% endif %}
             
             
         </div>
@@ -155,7 +230,7 @@
                     </div>
 
                     <div class="transparent2">
-                        <p>Email: support@predictiveloan.com</p>
+                        <p>pelmijosh@gmail.com</p>
                     </div>
                 </div>
             </div>

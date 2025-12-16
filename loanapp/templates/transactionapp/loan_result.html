@@ -30,7 +30,7 @@
                         <p class="lead text-success">{{ status_message }}</p>
                     {% else %}
                         <h1 class="display-4 text-danger font-weight-bold">
-                            Your loan has been declined.
+                            Your loan has been Declined.
                         </h1>
                         <p class="lead text-muted">{{ status_message }}</p>
                     {% endif %}
@@ -39,7 +39,7 @@
                 <hr class="my-4">
 
                 <!-- SUMMARY SECTION -->
-                <div class="row text-center mb-4">
+                {% comment %} <div class="row text-center mb-4">
                     <div class="col-12">
                         <h3 class="mb-3 text-primary">Prediction Details</h3>
                     </div>
@@ -57,14 +57,14 @@
                     <div class="col-md-{% if application.prediction_probability is not None %}6{% else %}12{% endif %} mb-3">
                         <div class="p-3 bg-light rounded shadow-sm">
                             <h5 class="mb-0 text-muted">Requested Amount</h5>
-                            <p class="h4 text-dark mt-1">${{ application.loan_amnt|floatformat:2 }}</p>
+                            <p class="h4 text-dark mt-1">₦{{ application.loan_amnt|floatformat:2 }}</p>
                         </div>
                     </div>
                 </div>
 
-                <hr class="my-4">
+                <hr class="my-4"> {% endcomment %}
 
-                <!-- APPLICATION INPUT DETAILS -->
+                {% comment %} <!-- APPLICATION INPUT DETAILS -->
                 <h3 class="mb-3 text-secondary text-center">Your Application Inputs</h3>
                 <div class="row">
                     <!-- Column 1 -->
@@ -73,7 +73,7 @@
                             <li><strong>Age:</strong> {{ application.person_age }}</li>
                             <li><strong>Gender:</strong> {{ application.person_gender }}</li>
                             <li><strong>Education:</strong> {{ application.person_education }}</li>
-                            <li><strong>Annual Income:</strong> ${{ application.person_income|floatformat:2 }}</li>
+                            <li><strong>Annual Income:</strong> ₦{{ application.person_income|floatformat:2 }}</li>
                             <li><strong>Employment Experience:</strong> {{ application.person_emp_exp }} years</li>
                         </ul>
                     </div>
@@ -101,9 +101,9 @@
                     <!-- Placeholder for viewing history -->
                     <button class="btn btn-lg btn-outline-secondary shadow-sm" disabled>
                         View Application History (Coming Soon)
-                    </button>
+                    </button> {% endcomment %}
                     
-                    <p class="mt-3 text-sm text-muted">Application ID: {{ application.id }} | User ID: {{ application.user.id }}</p>
+                    {% comment %} <p class="mt-3 text-sm text-muted">Application ID: {{ application.id }} | User ID: {{ application.user.id }}</p> {% endcomment %}
                 </div>
             </div>
         </div>

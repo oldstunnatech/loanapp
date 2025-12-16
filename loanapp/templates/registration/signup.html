@@ -1,7 +1,7 @@
 {% extends 'common_page.html' %} 
 {% load crispy_forms_tags %} 
 
-{% block title %}Apply for Loan - Step 1{% endblock title %} 
+{% block title %}Create Account - Financial Services{% endblock title %} 
 
 {% block body_content %}
 
@@ -10,92 +10,40 @@
     .signup-container {
         display: flex;
         justify-content: center;
+        align-items: center; /* Center vertically now */
         padding: 40px 1rem;
         background-color: #f7f9fc; /* Very light, soft background */
         min-height: calc(100vh - 80px);
     }
     
-    /* 2. Main Application Card */
+    /* 2. Main Signup Card (Single Column) */
     .app-card {
         background: white;
         border-radius: 16px;
         box-shadow: 0 10px 40px rgba(0, 50, 100, 0.08);
         width: 100%;
-        max-width: 900px; /* Wide card for better multi-step layout */
-        padding: 0; /* Padding handled inside columns */
-        overflow: hidden;
+        max-width: 550px; /* Slimmer card for a signup form */
+        padding: 3rem; /* Padding applied directly to the card */
+        border-top: 5px solid #ad3b19; /* Maintain the primary color accent */
     }
 
-    /* 3. Layout: Two-column Structure */
-    .app-layout {
-        display: flex;
-        min-height: 500px;
-    }
-
-    /* 4. Left Column: Progress Sidebar (Always visible) */
-    .progress-sidebar {
-        flex: 0 0 35%; /* Takes up 35% of the width */
-        background: linear-gradient(145deg, #ad3b19, #0056b3); /* Primary Blue Gradient */
-        color: white;
-        padding: 2.5rem;
-    }
-
-    .progress-sidebar h2 {
-        font-size: 1.5rem;
-        margin-bottom: 2rem;
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-        padding-bottom: 0.5rem;
-    }
-
-    .step-item {
-        margin-bottom: 1.5rem;
-        opacity: 0.6;
-        transition: opacity 0.3s;
-        display: flex;
-        align-items: center;
-    }
-
-    .step-item.active {
-        opacity: 1;
+    /* 3. Heading and Welcome Text */
+    .app-card h3 {
+        color: #ad3b19; /* Primary action color */
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+        text-align: center;
         font-weight: 700;
-        transform: scale(1.05);
-    }
-
-    .step-indicator {
-        width: 30px;
-        height: 30px;
-        border-radius: 50%;
-        background-color: rgba(255, 255, 255, 0.3);
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        margin-right: 15px;
-        font-size: 1.1rem;
-    }
-    .step-item.active .step-indicator {
-        background-color: white;
-        color:#ad3b19
-    }
-
-
-    /* 5. Right Column: Form Content */
-    .form-content {
-        flex: 1; /* Takes the remaining space */
-        padding: 3rem;
-    }
-
-    .form-content h3 {
-        color: #333;
-        font-size: 1.75rem;
-        margin-bottom: 1rem;
     }
     
-    .form-content p.description {
+    .app-card p.description {
         color: #666;
         margin-bottom: 2rem;
+        text-align: center;
+        font-size: 1.1rem;
     }
 
-    /* 6. Action Button */
+    /* 4. Action Button (Using the same style) */
     .next-btn {
         width: 100%;
         background-color: #ad3b19; 
@@ -108,63 +56,45 @@
         transition: background-color 0.3s, transform 0.1s;
         font-weight: 600;
         margin-top: 1.5rem;
-        box-shadow: 0 4px 15px #ad3b19
+        box-shadow: 0 4px 15px rgba(173, 59, 25, 0.4);
     }
     
     .next-btn:hover {
-        background-color: #ad3b19;
+        background-color: #a03517; /* Slightly darker hover */
         transform: translateY(-1px);
     }
+    
     .form-group {
         margin-bottom: 1.5rem;
+    }
+
+    /* Security Message for Signup */
+    .security-message {
+        text-align: center;
+        margin-top: 20px;
+        font-size: 0.85rem;
+        color: #888;
+        padding-top: 15px;
+        border-top: 1px dashed #eee;
     }
 </style>
 
 <div class="container signup-container">
     <div class="app-card">
-        <div class="app-layout">
+        
+        <h3>Start Your Journey</h3>
+        <p class="description">Create your secure account to access our financial services and begin your application.</p>
+        
+        <form method="POST">
+            {% csrf_token %}
+            {{ form|crispy }}
             
-            <div class="progress-sidebar">
-                <h2>Secured Login</h2>
-                
-                <div class="step-item active">
-                    <span class="step-indicator">1</span>
-                    Personal Information
-                </div>
-                
-                <div class="step-item">
-                    <span class="step-indicator">2</span>
-                    Employment & Income
-                </div>
-                
-                <div class="step-item">
-                    <span class="step-indicator">3</span>
-                    Loan Details
-                </div>
-
-                <div class="step-item">
-                    <span class="step-indicator">4</span>
-                    Review & Submit
-                </div>
-            </div>
-
-            <div class="form-content">
-                <h3>Tell Us About Yourself</h3>
-                <p class="description">Please provide your legal name and contact details to begin the process securely.</p>
-                
-                <form method="POST">
-                    {% csrf_token %}
-                    {{ form|crispy }}
-                    
-                    <button type="submit" class="next-btn mt-4">Continue to Next Step</button>
-                </form>
-                
-                <p class="security-message" style="margin-top: 20px; text-align: center; font-size: 0.8rem;">
-                    🔒 All information is encrypted and protected.
-                </p>
-            </div>
-            
-        </div>
+            <button type="submit" class="next-btn mt-4">Create Account</button>
+        </form>
+        
+        <p class="security-message">
+            🔒 By creating an account, you agree to our Terms and Conditions.
+        </p>
     </div>
 </div>
 
