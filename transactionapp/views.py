@@ -8,6 +8,7 @@ from .forms import LoanPredictionForm
 from .models import LoanApplication  # Import your model
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
+import pandas as pd
 
 
 model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
@@ -46,15 +47,14 @@ def encode(enc, val):
     Safely transform a single value using LabelEncoder or OrdinalEncoder.
     Returns a scalar.
     """
-    import numpy as np
+    
     # OrdinalEncoder expects 2D array
     if hasattr(enc, "categories_"):  # OrdinalEncoder
-        arr = np.array([[val]], dtype=object)
-        return enc.transform(arr)[0][0]
-    # LabelEncoder expects 1D array
-    else:  
-        arr = np.array([val], dtype=object)
-        return enc.transform(arr)[0]
+        column_name = enc.feature_names_in_[0]
+        df = pd.DataFrame({column_name: [val]})
+        return enc.transform(df)[0][0]
+    else:  # LabelEncoder
+        return enc.transform([val])[0]
     
 def encode_label(enc, val):
     return enc.transform([val])[0]  # simple 1D for LabelEncoder
@@ -109,11 +109,11 @@ def loan_predict_view(request, user_id):
             
             # Make prediction
             input_array = np.array([data]) # Creates a shape (1, 13) array
-            prediction = loan_model.predict(input_array)[0]
+            prediction = int(loan_model.predict(input_array)[0])
 
             # Optional: if your model provides probability
             try:
-                probability = loan_model.predict_proba(input_array)[0][1]
+                probability = float(loan_model.predict_proba(input_array)[0][1])
             except AttributeError:
                 probability = None
                 
