@@ -26,7 +26,7 @@ SECRET_KEY = "django-insecure-qev_@1*uf==+fx&0$_02w=_$zou_t3hb10q&j-mv7)m=c05arg
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ["olstunnatech.pythonanywhere.com", "127.0.0.1"]
+ALLOWED_HOSTS = ["https://loanapp-jzxq.onrender.com/", "localhost", "127.0.0.1"]
 
 
 # Application definition
@@ -83,16 +83,31 @@ WSGI_APPLICATION = "loanapp.wsgi.application"
 # Database
 # https://docs.djangoproject.com/en/5.2/ref/settings/#databases
 
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.mysql",
+#         "NAME": "loanapp_db",
+#         "USER": "root",
+#         "PASSWORD": "OldStunna27!",
+#         "HOST": "localhost",
+#         "PORT": "3306",
+#         "OPTIONS": {
+#             "autocommit": True,
+#         },
+
+#     }
+# }
+
 DATABASES = {
-    "default": {
-        "ENGINE": "django.db.backends.mysql",
-        "NAME": "loanapp_db",
-        "USER": "root",
-        "PASSWORD": "OldStunna27!",
-        "HOST": "localhost",
-        "PORT": "3306",
-        "OPTIONS": {
-            "autocommit": True,
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'loanapp_db_0g0q',  # Your database name on Render
+        'USER': 'loanapp_db_0g0q_user',
+        'PASSWORD': '2WP3FxCkj3YY2foYqoaBS3tCLpyVGeT3',
+        'HOST': 'dpg-d5ajha95pdvs73b0gkt0-a.oregon-postgres.render.com',
+        'PORT': '5432',
+        'OPTIONS': {
+            'sslmode': 'require',
         },
 
     }
