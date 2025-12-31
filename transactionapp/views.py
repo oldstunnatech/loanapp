@@ -10,18 +10,30 @@ from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 import pandas as pd
 
-
-model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
-
-with open(model_path, "rb") as f:
-    loan_model = joblib.load(f)
+loan_model = None
+encoders = None
 
 
-# Load encoders
-encoder_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "encoders.pkl")
+def get_loan_model():
+    global loan_model
+    if loan_model is None:
+        model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
+        with open(model_path, "rb") as f:
+            loan_model = joblib.load(f)
+    return loan_model
 
-with open(encoder_path, "rb") as f:
-    encoders = pickle.load(f)
+
+
+def get_encoders():
+    global encoders
+    if encoders is None:
+        encoder_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "encoders.pkl")
+        with open(encoder_path, "rb") as f:
+            encoders = pickle.load(f)
+    return encoders
+
+
+
 
 
 HOME_OWNERSHIP_MAP = {
@@ -67,27 +79,18 @@ def loan_predict_view(request, user_id):
     prediction = None
     probability = None  # initialize
 
-    
+    model = get_loan_model()
+    enc = get_encoders()
+
     if request.method == "POST":
         form = LoanPredictionForm(request.POST)
         
         if form.is_valid():
-
-            #Transform categorical fields using encoders 
-            # gender_val = encode(encoders["gender"], form.cleaned_data['person_gender'])
-            # education_val = encode(encoders["education"], form.cleaned_data['person_education'])
-            # home_val = HOME_OWNERSHIP_MAP[form.cleaned_data['person_home_ownership']]
-            # loan_intent_val = loan_intent_map[form.cleaned_data['loan_intent']]
-            # # loan_intent_str = form.cleaned_data['loan_intent'].upper()
-            # # loan_intent_val = encoders["loan_intent"].transform([loan_intent_str])[0]
-            # # loan_intent_val = encode(encoders["loan_intent"], form.cleaned_data['loan_intent'].upper())
-            # previous_val = encode(encoders["previous_loan_defaults_on_file"],form.cleaned_data['previous_loan_defaults_on_file'])
-
-            gender_val = int(encode(encoders["gender"], form.cleaned_data['person_gender']))
-            education_val = int(encode(encoders["education"], form.cleaned_data['person_education']))
+            gender_val = int(encode(enc["gender"], form.cleaned_data['person_gender']))
+            education_val = int(encode(enc["education"], form.cleaned_data['person_education']))
             home_val = HOME_OWNERSHIP_MAP[form.cleaned_data['person_home_ownership']] # Already scalar
             loan_intent_val = loan_intent_map[form.cleaned_data['loan_intent']] # Already scalar
-            previous_val = int(encode(encoders["previous_loan_defaults_on_file"],form.cleaned_data['previous_loan_defaults_on_file']))
+            previous_val = int(encode(enc["previous_loan_defaults_on_file"],form.cleaned_data['previous_loan_defaults_on_file']))
 
             data = [
                 form.cleaned_data['person_age'],
@@ -109,11 +112,11 @@ def loan_predict_view(request, user_id):
             
             # Make prediction
             input_array = np.array([data]) # Creates a shape (1, 13) array
-            prediction = int(loan_model.predict(input_array)[0])
+            prediction = int(model.predict(input_array)[0])
 
             # Optional: if your model provides probability
             try:
-                probability = float(loan_model.predict_proba(input_array)[0][1])
+                probability = float(model.predict_proba(input_array)[0][1])
             except AttributeError:
                 probability = None
                 
