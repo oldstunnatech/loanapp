@@ -18,8 +18,11 @@ def get_loan_model():
     global loan_model
     if loan_model is None:
         model_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "xgb_model.pkl")
-        with open(model_path, "rb") as f:
-            loan_model = joblib.load(f)
+
+        if not os.path.exists(model_path):
+            raise FileNotFoundError(f"Model file not found at {model_path}")
+        
+        loan_model = joblib.load(model_path)
     return loan_model
 
 
@@ -28,8 +31,10 @@ def get_encoders():
     global encoders
     if encoders is None:
         encoder_path = os.path.join(settings.BASE_DIR, "transactionapp", "ML_models", "encoders.pkl")
-        with open(encoder_path, "rb") as f:
-            encoders = pickle.load(f)
+        if not os.path.exists(encoder_path):
+            raise FileNotFoundError(f"Encoders file not found at {encoder_path}")
+        
+        encoders = joblib.load(encoder_path)
     return encoders
 
 
