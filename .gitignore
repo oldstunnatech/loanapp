@@ -1,1 +1,6 @@
-transactionapp/ML_models/*.pkl
+#/transactionapp/ML_models/*.pkl
+
+# But track these specific files
+!transactionapp/ML_models/xgb_model.pkl
+!transactionapp/ML_models/encoders.pkl
+!transactionapp/ML_models/random_forest_model.pkl
