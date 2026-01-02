@@ -6,49 +6,66 @@
 <style>
     .contact-section {
         background-color: #f8f9fa;
-        padding: 3rem 0;
-        margin-top: 50px;
+        padding: 3rem 1rem;
     }
 
     .contact-card {
-        background: white;
+        background: #ffffff;
         border-radius: 12px;
-        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
         padding: 2rem;
-        margin-bottom: 2rem;
+        height: 100%;
     }
 
     .contact-title {
-        font-weight: bold;
-        color: #198754; /* Bootstrap green */
-        margin-bottom: 1rem;
+        font-weight: 700;
+        color: #198754;
+        margin-bottom: 2.5rem;
         text-align: center;
     }
 
-    .contact-info p {
-        font-size: 1.1rem;
-        margin-bottom: 0.5rem;
+    .contact-card h4 {
+        margin-top: 1.5rem;
+        font-weight: 600;
+    }
+
+    .contact-card p {
+        font-size: 1rem;
+        margin-bottom: 0.4rem;
+        color: #333;
     }
 
     .map-container {
         border-radius: 12px;
         overflow: hidden;
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
-        margin-top: 2rem;
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
+        height: 100%;
+        min-height: 300px;
     }
 
-    .container {
-        margin-top: 40px;
+    .contact-title{
+        margin-top: -50px;
+        margin-left: -50px;
+    }
+    .contact-card{
+        margin-left: 200px;
+    }
+
+    @media (max-width: 576px) {
+        .contact-card {
+            padding: 1.5rem;
+        }
     }
 </style>
 
 <section class="contact-section">
     <div class="container">
-        <h1 class="contact-title">Contact Us</h1>
-        <div class="row">
+        {% comment %} <h1 class="contact-title">Contact Us</h1> {% endcomment %}
+
+        <div class="row g-4 align-items-stretch">
             
             <!-- Contact Info -->
-            <div class="col-md-5">
+            <div class="col-12 col-md-6">
                 <div class="contact-card">
                     <h4>📍 Address</h4>
                     <p>SQI College Of ICT</p>
@@ -57,27 +74,26 @@
                     <h4>📞 Telephone</h4>
                     <p>08102242467</p>
                     <p>09035993262</p>
-                    
+
                     <h4>✉️ Email</h4>
                     <p>pelmijosh@gmail.com</p>
 
                     <h4>🕒 Hours</h4>
-                    <p>Week Days: 08:00 AM - 10:00 PM</p>
-                    <p>Weekends: 10:00 AM - 10:00 PM</p>
+                    <p>Weekdays: 08:00 AM – 10:00 PM</p>
+                    <p>Weekends: 10:00 AM – 10:00 PM</p>
                 </div>
             </div>
 
             <!-- Google Map -->
-            <div class="col-md-7">
+            <div class="col-12 col-md-6">
                 <div class="map-container">
                     <iframe 
-                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3021.186276312011!2d-73.91899828459405!3d40.77235127932474!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x89c25f5e7ffb92a1%3A0xa55bbddc0f4f6b1b!2s3316%2023rd%20Ave%2C%20Astoria%2C%20NY%2011105%2C%20USA!5e0!3m2!1sen!2sus!4v1700000000000!5m2!1sen!2sus" 
+                        src="https://www.google.com/maps?q=SQI%20College%20of%20ICT%20Ogbomoso&output=embed"
                         width="100%" 
-                        height="400" 
+                        height="100%" 
                         style="border:0;" 
-                        allowfullscreen="" 
-                        loading="lazy" 
-                        referrerpolicy="no-referrer-when-downgrade">
+                        allowfullscreen 
+                        loading="lazy">
                     </iframe>
                 </div>
             </div>
