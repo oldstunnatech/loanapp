@@ -25,7 +25,7 @@ PROJECT_DIR =os.path.dirname(os.path.abspath(__file__))
 SECRET_KEY = "django-insecure-qev_@1*uf==+fx&0$_02w=_$zou_t3hb10q&j-mv7)m=c05arg"
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
+DEBUG = True
 
 ALLOWED_HOSTS = ["loanapp-jzxq.onrender.com", "localhost", "127.0.0.1"]
 
