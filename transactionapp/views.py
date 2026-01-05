@@ -35,7 +35,7 @@ def get_loan_model():
         # Get the directory where THIS views.py file is located
         current_dir = os.path.dirname(os.path.abspath(__file__))
         # Construct path to ML_models/xgb_model.pkl relative to this file
-        model_path = os.path.join(current_dir, 'ML_models', 'xgb_model.pkl')
+        model_path = os.path.join(current_dir, 'ml_models', 'xgb_model.pkl')
 
         if not os.path.exists(model_path):
             # Debugging info for Render logs
@@ -44,6 +44,8 @@ def get_loan_model():
             raise FileNotFoundError(f"Model file not found at {model_path}")
         
         loan_model = joblib.load(model_path)
+        print("MODEL LOADING PATH:", model_path)
+
     return loan_model
 
 
@@ -56,7 +58,7 @@ def get_encoders():
         # Get the directory where THIS views.py file is located
         current_dir = os.path.dirname(os.path.abspath(__file__))
         # Construct path to ML_models/encoders.pkl relative to this file
-        encoder_path = os.path.join(current_dir, 'ML_models', 'encoders.pkl')
+        encoder_path = os.path.join(current_dir, 'ml_models', 'encoders.pkl')
 
         if not os.path.exists(encoder_path):
             raise FileNotFoundError(f"Encoders file not found at {encoder_path}")
